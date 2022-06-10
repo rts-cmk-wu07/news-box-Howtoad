@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-const NewsArticle = () => {
+const NewsArticle = (props) => {
   const styles = {
     newsarticle: css`
       display: flex;
@@ -24,6 +24,7 @@ const NewsArticle = () => {
         font-size: 15px;
         font-weight: bold;
         color: #334856;
+        text-transform: capitalize;
       }
       & .articleinfo p {
         font-size: 14px;
@@ -37,11 +38,8 @@ const NewsArticle = () => {
         <img src="images/newswoman.png"></img>
       </div>
       <div className="articleinfo">
-        <h2>Headline</h2>
-        <p>
-          Hey Cody, you should definitely check out Yoga Six for hot yoga! They
-          have...
-        </p>
+        <h2>{props.title}</h2>
+        <p>{props.text}</p>
       </div>
     </div>
   );

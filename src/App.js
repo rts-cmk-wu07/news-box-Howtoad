@@ -11,13 +11,8 @@ function App() {
     <div className="App">
       <Navbar />
       <SearchBar />
-      <CategoryBar />
-      <NewsArticle />
-      <CategoryBar />
-      <NewsArticle />
-      <NewsArticle />
-      <NewsArticle />
-      <NewsArticle />
+      <CategoryBar category="Sport" />
+      <CategoryBar category="Travel" />
     </div>
   );
 }

@@ -1,13 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { IoIosArrowDown } from "react-icons/io";
-const CategoryBar = () => {
+import NewsArticle from "./NewsArticle";
+const CategoryBar = (props) => {
   const styles = {
     categorybar: css`
       height: 58px;
       display: flex;
       padding: 10px;
-        border-bottom: 1px solid grey;
+      border-bottom: 1px solid grey;
       width: 100%;
       & .iconbox {
         max-width: 35px;
@@ -32,6 +33,7 @@ const CategoryBar = () => {
         margin-left: 10px;
         justify-self: start;
         align-self: center;
+        text-transform: uppercase;
       }
       & .categoryicon {
         font-size: 24px;
@@ -41,14 +43,24 @@ const CategoryBar = () => {
       }
     `,
   };
+  let myarray = ["test1", "test2", "test3", "test4"];
   return (
-    <div css={styles.categorybar}>
-      <div className="iconbox">
-        <img src="images/icn_surfing.png"></img>
+    <>
+      <div css={styles.categorybar}>
+        <div className="iconbox">
+          <img src="images/icn_surfing.png"></img>
+        </div>
+        <h2>{props.category}</h2>
+        <IoIosArrowDown className="categoryicon" />
       </div>
-      <h2>SPORT</h2>
-      <IoIosArrowDown className="categoryicon" />
-    </div>
+      {myarray.map((item) => (
+        <NewsArticle
+          title="title2"
+          text="Hey Cody, you should definitely check out Yoga Six for hot yoga! They
+        have..."
+        />
+      ))}
+    </>
   );
 };
 
