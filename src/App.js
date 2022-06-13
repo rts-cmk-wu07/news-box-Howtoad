@@ -10,9 +10,9 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <SearchBar />
-      <CategoryBar category="Sport" />
-      <CategoryBar category="Travel" />
+      <div>
+        <Outlet />
+      </div>
     </div>
   );
 }
