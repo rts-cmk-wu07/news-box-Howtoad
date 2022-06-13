@@ -48,7 +48,7 @@ const CategoryBar = (props) => {
     <>
       <div css={styles.categorybar}>
         <div className="iconbox">
-          <img src="images/icn_surfing.png"></img>
+          <img src="images/icn_surfing.png" alt="lol"></img>
         </div>
         <h2>{props.category}</h2>
         <IoIosArrowDown className="categoryicon" />

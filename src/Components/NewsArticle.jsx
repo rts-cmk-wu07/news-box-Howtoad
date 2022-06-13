@@ -1,6 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-
+import SwipeToDelete from "react-swipe-to-delete-component";
+import "react-swipe-to-delete-component/dist/swipe-to-delete.css";
 const NewsArticle = ({ title, text }) => {
   const styles = {
     newsarticle: css`
@@ -9,6 +10,7 @@ const NewsArticle = ({ title, text }) => {
       padding-bottom: 15px;
       padding-left: 20px;
       border-bottom: 1px solid grey;
+      background-color: white;
       & .profilepic {
         max-width: 70px;
       }
@@ -33,16 +35,21 @@ const NewsArticle = ({ title, text }) => {
     `,
   };
 
+  const onRight = () => {
+    console.log("right");
+  };
   return (
-    <div css={styles.newsarticle}>
-      <div className="profilepic">
-        <img src="images/newswoman.png"></img>
+    <SwipeToDelete deleteSwipe="0.3" onRight={onRight}>
+      <div css={styles.newsarticle}>
+        <div className="profilepic">
+          <img src="images/newswoman.png"></img>
+        </div>
+        <div className="articleinfo">
+          <h2>{title}</h2>
+          <p>{text}</p>
+        </div>
       </div>
-      <div className="articleinfo">
-        <h2>{title}</h2>
-        <p>{text}</p>
-      </div>
-    </div>
+    </SwipeToDelete>
   );
 };
 
