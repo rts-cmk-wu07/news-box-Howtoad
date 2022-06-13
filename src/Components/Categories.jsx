@@ -9,6 +9,8 @@ const Categories = () => {
       display: grid;
       max-width: 338px;
       margin: 0 auto;
+      border-radius: 10px;
+      margin-top: 63px;
 
       & li {
         display: flex;
@@ -77,22 +79,38 @@ const Categories = () => {
     <ul css={styles.categories}>
       <li>
         <p>Europe</p>
-        <label class="switch">
+        <label className="switch">
           <input type="checkbox"></input>
-          <span class="slider round"></span>
+          <span className="slider round"></span>
         </label>
       </li>
       <li>
         <p>Health</p>
+        <label className="switch">
+          <input type="checkbox"></input>
+          <span className="slider round"></span>
+        </label>
       </li>
       <li>
         <p>Sport</p>
+        <label className="switch">
+          <input type="checkbox"></input>
+          <span className="slider round"></span>
+        </label>
       </li>
       <li>
         <p>Business</p>
+        <label className="switch">
+          <input type="checkbox"></input>
+          <span className="slider round"></span>
+        </label>
       </li>
       <li>
         <p>Travel</p>
+        <label className="switch">
+          <input type="checkbox"></input>
+          <span className="slider round"></span>
+        </label>
       </li>
     </ul>
   );
