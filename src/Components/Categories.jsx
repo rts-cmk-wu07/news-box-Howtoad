@@ -17,6 +17,9 @@ const Categories = () => {
         padding: 21px;
         border-bottom: 1px solid grey;
       }
+      & p {
+        align-self: center;
+      }
       & .switch {
         position: relative;
         display: inline-block;
