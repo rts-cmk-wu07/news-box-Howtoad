@@ -32,7 +32,7 @@ const Navbar = () => {
   return (
     <nav css={styles.navbar}>
       <IoIosArrowBack className="backarrow" />
-      <Link to="/">Archive</Link>
+      <Link to="/">Newsbox</Link>
       <IoMdSettings className="settings" />
     </nav>
   );

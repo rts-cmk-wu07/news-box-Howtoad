@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useSwipeable } from "react-swipeable";
 
 const NewsArticle = (props) => {
   const styles = {
@@ -32,8 +33,11 @@ const NewsArticle = (props) => {
       }
     `,
   };
+  const handlers = useSwipeable({
+    onSwiped: (eventData) => console.log("swiped", eventData),
+  });
   return (
-    <div css={styles.newsarticle}>
+    <div css={styles.newsarticle} onSwiped={handlers}>
       <div className="profilepic">
         <img src="images/newswoman.png"></img>
       </div>
