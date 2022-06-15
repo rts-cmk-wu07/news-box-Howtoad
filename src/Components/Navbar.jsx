@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { css } from "@emotion/react";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoMdSettings } from "react-icons/io";
+import { useLocation } from "react-router-dom";
+import { BiArchive } from "react-icons/bi";
+
 const Navbar = () => {
   const styles = {
     navbar: css`
@@ -29,11 +32,29 @@ const Navbar = () => {
       }
     `,
   };
+  let urlLocation = useLocation().pathname;
+
   return (
     <nav css={styles.navbar}>
-      <IoIosArrowBack className="backarrow" />
-      <Link to="/">Archive</Link>
-      <IoMdSettings className="settings" />
+      {(useLocation().pathname === "/" && (
+        <Link to="/archive">
+          <BiArchive />
+        </Link>
+      )) || (
+        <Link to="/">
+          <IoIosArrowBack className="backarrow" />
+        </Link>
+      )}
+      <h1>
+        {(urlLocation === "/" && "Newsbox") ||
+          (urlLocation === "/archive" && "Archive") ||
+          (urlLocation === "/settings" && "Settings")}
+      </h1>
+      {(useLocation().pathname !== "/settings" && (
+        <Link to="/settings">
+          <IoMdSettings className="settings" />{" "}
+        </Link>
+      )) || <div></div>}
     </nav>
   );
 };
