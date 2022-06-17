@@ -29,6 +29,7 @@ const Navbar = () => {
       }
       & a {
         justify-self: center;
+        height: 30px;
       }
     `,
   };
