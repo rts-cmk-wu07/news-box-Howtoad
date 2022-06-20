@@ -1,18 +1,38 @@
 /** @jsxImportSource @emotion/react */
-import { Outlet } from "react-router-dom";
+
 import "./App.css";
-import CategoryBar from "./Components/CategoryBar";
+
 import Navbar from "./Components/Navbar";
-import NewsArticle from "./Components/NewsArticle";
-import SearchBar from "./Components/SearchBar";
+
+import CategoryContext from "./Context/CategoryContext";
+import { useState } from "react";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Routes, Route } from "react-router-dom";
+import Archive from "./Components/Archive";
+import NewsBox from "./Components/NewsBox";
+import Settings from "./Components/Settings";
 
 function App() {
+  const cateogoryList = [
+    { world: true },
+    { health: true },
+    { sports: true },
+    { business: true },
+    { travel: true },
+  ];
+  const [category, setCategory] = useState(cateogoryList);
   return (
     <div className="App">
-      <Navbar />
-      <div>
-        <Outlet />
-      </div>
+      <CategoryContext.Provider value={{ category, setCategory }}>
+        <Navbar />
+
+        <Routes>
+          <Route path="/" element={<NewsBox />} />
+          <Route path="archive" element={<Archive />} />
+          <Route path="settings" element={<Settings />} />
+        </Routes>
+      </CategoryContext.Provider>
     </div>
   );
 }
