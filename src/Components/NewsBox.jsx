@@ -6,7 +6,11 @@ const NewsBox = () => {
   return (
     <>
       <SearchBar />
-      <CategooryBar category="Sport" />
+      <CategooryBar category="sports" />
+      <CategooryBar category="travel" />
+      <CategooryBar category="world" />
+      <CategooryBar category="business" />
+      <CategooryBar category="health" />
     </>
   );
 };

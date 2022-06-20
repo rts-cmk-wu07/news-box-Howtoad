@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import Categories from "./Categories";
 import ToggleDarkmode from "./ToggleDarkmode";
+
 const Settings = () => {
   const styles = {
     settings: css`

@@ -5,7 +5,7 @@ const Archive = () => {
   return (
     <>
       <SearchBar />
-      <CategoryBar category="Sport" />
+      <CategoryBar category="sports" />
       <CategoryBar category="Travel" />
     </>
   );

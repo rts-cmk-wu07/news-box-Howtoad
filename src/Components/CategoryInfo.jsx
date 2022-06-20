@@ -40,16 +40,23 @@ const CategoryInfo = (props) => {
         justify-self: end;
         margin-left: auto;
         align-self: center;
+        transform: rotate(${props.arrow});
+        transition: 0.6s;
       }
     `,
   };
+
   return (
     <div css={styles.categoryinfo}>
       <div className="iconbox">
         <img src="images/icn_surfing.png" alt="lol"></img>
       </div>
       <h2>{props.category}</h2>
-      <IoIosArrowDown className="categoryicon" />
+      <IoIosArrowDown
+        className="categoryicon"
+        id="arrow"
+        key={props.category}
+      />
     </div>
   );
 };

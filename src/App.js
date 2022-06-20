@@ -26,7 +26,6 @@ function App() {
     <div className="App">
       <CategoryContext.Provider value={{ category, setCategory }}>
         <Navbar />
-
         <Routes>
           <Route path="/" element={<NewsBox />} />
           <Route path="archive" element={<Archive />} />

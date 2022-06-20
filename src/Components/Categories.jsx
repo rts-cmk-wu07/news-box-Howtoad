@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { useState } from "react";
 
-const Categories = () => {
+const Categories = (categoryList) => {
   const styles = {
     categories: css`
       background-color: #ffffff;
@@ -75,6 +76,8 @@ const Categories = () => {
       }
     `,
   };
+  const [category, setCategory] = useState(categoryList);
+
   return (
     <ul css={styles.categories}>
       <li>
