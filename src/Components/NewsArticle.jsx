@@ -2,7 +2,8 @@
 import { css } from "@emotion/react";
 import SwipeToDelete from "react-swipe-to-delete-component";
 import "react-swipe-to-delete-component/dist/swipe-to-delete.css";
-const NewsArticle = ({ title, text, img, key }) => {
+
+const NewsArticle = ({ title, text, img, key, url }) => {
   const styles = {
     newsarticle: css`
       display: flex;
@@ -56,8 +57,10 @@ const NewsArticle = ({ title, text, img, key }) => {
           <img src={img}></img>
         </div>
         <div className="articleinfo">
-          <h2>{title}</h2>
-          <p>{text}</p>
+          <a href={url}>
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </a>
         </div>
       </div>
     </SwipeToDelete>

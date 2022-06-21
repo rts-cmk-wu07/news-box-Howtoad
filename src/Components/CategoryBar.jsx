@@ -25,7 +25,7 @@ const CategoryBar = ({ category }) => {
         }}
         trigger={<CategoryInfo category={category} arrow={arrow} />}
       >
-        {error && <p>Cant load</p>}
+        {error && <p>API banned xD</p>}
         {loading && <p>Loading...</p>}
         {data &&
           data.results.map((item) => {
