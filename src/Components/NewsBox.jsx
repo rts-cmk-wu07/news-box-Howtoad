@@ -11,17 +11,18 @@ const NewsBox = () => {
   category.map((item) => {
     categoryKeys.push(Object.keys(item));
   });
-  console.log(categoryKeys);
-
+  let categoriesEnabled = [];
+  category.map((item, i) => {
+    item[categoryKeys[i][0]] && categoriesEnabled.push(Object.keys(item));
+  });
+  console.log(categoriesEnabled);
   return (
     <>
       <SearchBar />
 
-      <CategoryBar category="sports" />
-      <CategoryBar category="travel" />
-      <CategoryBar category="world" />
-      <CategoryBar category="business" />
-      <CategoryBar category="health" />
+      {categoriesEnabled.map((item) => {
+        return <CategoryBar category={item} key={item} />;
+      })}
     </>
   );
 };
