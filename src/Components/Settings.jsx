@@ -7,6 +7,8 @@ import categoryContext from "../Context/CategoryContext";
 
 const Settings = () => {
   const { category, setCategory } = useContext(categoryContext);
+  let settingsCategory =
+    JSON.parse(localStorage.getItem("settingsCategory")) || false;
   const styles = {
     settings: css`
       background-color: #eceff0;
@@ -51,8 +53,16 @@ const Settings = () => {
       <h1>Manage</h1>
       <h2>Categories</h2>
       <ul>
-        {categoryList.map((item) => {
-          return <Categories category={item} key={item} />;
+        {categoryList.map((item, i) => {
+          return (
+            <Categories
+              settingsCategory={item}
+              key={item}
+              checked={
+                (settingsCategory && settingsCategory[i][item] && true) || false
+              }
+            />
+          );
         })}
       </ul>
       <ToggleDarkmode />

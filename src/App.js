@@ -12,6 +12,7 @@ import { Routes, Route } from "react-router-dom";
 import Archive from "./Components/Archive";
 import NewsBox from "./Components/NewsBox";
 import Settings from "./Components/Settings";
+import { useEffect } from "react";
 
 function App() {
   const listOfCategories = [
@@ -22,7 +23,11 @@ function App() {
     { travel: true },
   ];
   const [category, setCategory] = useState(listOfCategories);
-
+  let settingsCategory =
+    JSON.parse(localStorage.getItem("settingsCategory")) || false;
+  useEffect(() => {
+    settingsCategory && setCategory(settingsCategory);
+  }, []);
   return (
     <div className="App">
       <categoryContext.Provider value={{ category, setCategory }}>

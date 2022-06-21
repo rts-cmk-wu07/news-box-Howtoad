@@ -1,8 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import { useState } from "react";
+import categoryContext from "../Context/CategoryContext";
+import { useContext } from "react";
 
-const Categories = ({ category }) => {
+const Categories = ({ settingsCategory, checked }) => {
+  const { category, setCategory } = useContext(categoryContext);
   const styles = {
     categories: css`
       display: flex;
@@ -68,12 +71,31 @@ const Categories = ({ category }) => {
       }
     `,
   };
-
+  const checkObject = (obj) => {
+    if (settingsCategory == Object.keys(obj)[0]) {
+      return true;
+    }
+  };
+  const updateCategory = (e) => {
+    if (e.target.checked) {
+      category[category.findIndex(checkObject)][settingsCategory] = true;
+    } else {
+      category[category.findIndex(checkObject)][settingsCategory] = false;
+    }
+    setCategory(category);
+    localStorage.setItem("settingsCategory", JSON.stringify(category));
+  };
   return (
     <li css={styles.categories}>
-      <p>{category}</p>
+      <p>{settingsCategory}</p>
       <label className="switch">
-        <input type="checkbox"></input>
+        {(checked && (
+          <input
+            type="checkbox"
+            defaultChecked
+            onClick={updateCategory}
+          ></input>
+        )) || <input type="checkbox" onClick={updateCategory}></input>}
         <span className="slider round"></span>
       </label>
     </li>

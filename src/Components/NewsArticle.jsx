@@ -16,6 +16,9 @@ const NewsArticle = ({ title, text, img, key }) => {
       }
       & .profilepic img {
         max-width: 100%;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
       }
       & .articleinfo {
         max-width: 240px;
@@ -27,16 +30,24 @@ const NewsArticle = ({ title, text, img, key }) => {
         font-weight: bold;
         color: #334856;
         text-transform: capitalize;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
       & .articleinfo p {
         font-size: 14px;
         color: #6e8ca0;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
       }
     `,
   };
 
-  const onRight = () => {
-    
+  const onRight = (e) => {
+    e.preventDefault();
   };
   return (
     <SwipeToDelete deleteSwipe="0.3" onRight={onRight}>
