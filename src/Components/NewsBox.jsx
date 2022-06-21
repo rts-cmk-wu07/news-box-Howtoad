@@ -15,7 +15,7 @@ const NewsBox = () => {
   category.map((item, i) => {
     item[categoryKeys[i][0]] && categoriesEnabled.push(Object.keys(item));
   });
-  console.log(categoriesEnabled);
+
   return (
     <>
       <SearchBar />

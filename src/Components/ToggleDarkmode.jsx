@@ -12,6 +12,7 @@ const ToggleDarkmode = () => {
       display: grid;
       margin: 0 auto;
       margin-top: 70px;
+      cursor: pointer;
       & h2 {
         align-self: center;
       }

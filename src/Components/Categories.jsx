@@ -2,24 +2,16 @@
 import { css } from "@emotion/react";
 import { useState } from "react";
 
-const Categories = (categoryList) => {
+const Categories = ({ category }) => {
   const styles = {
     categories: css`
-      background-color: #ffffff;
-      list-style-type: none;
-      display: grid;
-      max-width: 338px;
-      margin: 0 auto;
-      border-radius: 10px;
-      margin-top: 63px;
+      display: flex;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 21px;
+      border-bottom: 1px solid grey;
+      text-transform: capitalize;
 
-      & li {
-        display: flex;
-        font-size: 15px;
-        font-weight: bold;
-        padding: 21px;
-        border-bottom: 1px solid grey;
-      }
       & p {
         align-self: center;
       }
@@ -76,46 +68,15 @@ const Categories = (categoryList) => {
       }
     `,
   };
-  const [category, setCategory] = useState(categoryList);
 
   return (
-    <ul css={styles.categories}>
-      <li>
-        <p>Europe</p>
-        <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
-        </label>
-      </li>
-      <li>
-        <p>Health</p>
-        <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
-        </label>
-      </li>
-      <li>
-        <p>Sport</p>
-        <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
-        </label>
-      </li>
-      <li>
-        <p>Business</p>
-        <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
-        </label>
-      </li>
-      <li>
-        <p>Travel</p>
-        <label className="switch">
-          <input type="checkbox"></input>
-          <span className="slider round"></span>
-        </label>
-      </li>
-    </ul>
+    <li css={styles.categories}>
+      <p>{category}</p>
+      <label className="switch">
+        <input type="checkbox"></input>
+        <span className="slider round"></span>
+      </label>
+    </li>
   );
 };
 
