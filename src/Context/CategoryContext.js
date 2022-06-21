@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-const ColorsContext = createContext([
+const categoryContext = createContext([
   "world",
   "health",
   "sports",
@@ -8,4 +8,4 @@ const ColorsContext = createContext([
   "travel",
 ]);
 
-export default ColorsContext;
+export default categoryContext;

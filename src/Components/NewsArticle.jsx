@@ -36,7 +36,7 @@ const NewsArticle = ({ title, text, img, key }) => {
   };
 
   const onRight = () => {
-    console.log("right");
+    
   };
   return (
     <SwipeToDelete deleteSwipe="0.3" onRight={onRight}>

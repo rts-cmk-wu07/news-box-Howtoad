@@ -1,16 +1,27 @@
 /** @jsxImportSource @emotion/react */
 import SearchBar from "./SearchBar";
-import CategooryBar from "./CategoryBar";
+import CategoryBar from "./CategoryBar";
+import { useContext } from "react";
+import categoryContext from "../Context/CategoryContext";
 
 const NewsBox = () => {
+  const { category, setCategory } = useContext(categoryContext);
+
+  let categoryKeys = [];
+  category.map((item) => {
+    categoryKeys.push(Object.keys(item));
+  });
+  console.log(categoryKeys);
+
   return (
     <>
       <SearchBar />
-      <CategooryBar category="sports" />
-      <CategooryBar category="travel" />
-      <CategooryBar category="world" />
-      <CategooryBar category="business" />
-      <CategooryBar category="health" />
+
+      <CategoryBar category="sports" />
+      <CategoryBar category="travel" />
+      <CategoryBar category="world" />
+      <CategoryBar category="business" />
+      <CategoryBar category="health" />
     </>
   );
 };

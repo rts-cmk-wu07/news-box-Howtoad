@@ -10,7 +10,6 @@ const CategoryBar = ({ category }) => {
     "https://api.nytimes.com/svc/topstories/v2/" +
     category +
     ".json?api-key=p9wCSJU4L6Hnkh4jVmB39Yv0KeA3mkcl";
-  console.log(API_URL);
   const { data, loading, error } = useFetch(API_URL);
   let placeholderimg = "images/newswoman.png";
 
