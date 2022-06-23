@@ -1,7 +1,15 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import SwipeToDelete from "react-swipe-to-delete-component";
+
 import "react-swipe-to-delete-component/dist/swipe-to-delete.css";
+import {
+  SwipeableList,
+  SwipeableListItem,
+  LeadingActions,
+  SwipeAction,
+  TrailingActions,
+} from "react-swipeable-list";
+import "react-swipeable-list/dist/styles.css";
 
 const NewsArticle = ({ title, text, img, key, url }) => {
   const styles = {
@@ -46,24 +54,47 @@ const NewsArticle = ({ title, text, img, key, url }) => {
       }
     `,
   };
-
-  const onRight = (e) => {
-    e.preventDefault();
+  const leadingActions = () => {
+    <LeadingActions>
+      <SwipeAction
+        onClick={() => {
+          console.log("leading action");
+        }}
+      >
+        leadtest
+      </SwipeAction>
+    </LeadingActions>;
   };
+  const trailingActions = () => {
+    <TrailingActions>
+      <SwipeAction
+        onClick={() => {
+          console.log("trailing action");
+        }}
+      >
+        trailtest
+      </SwipeAction>
+    </TrailingActions>;
+  };
+
   return (
-    <SwipeToDelete deleteSwipe="0.3" onRight={onRight}>
-      <div css={styles.newsarticle}>
-        <div className="profilepic">
-          <img src={img}></img>
-        </div>
-        <div className="articleinfo">
-          <a href={url}>
+    <SwipeableList>
+      <SwipeableListItem
+        leadingActions={leadingActions()}
+        trailingActions={trailingActions()}
+        children={<div className="newsarticle"> </div>}
+      >
+        <div css={styles.newsarticle} className="newsarticle">
+          <div className="profilepic">
+            <img src={img}></img>
+          </div>
+          <div className="articleinfo">
             <h2>{title}</h2>
             <p>{text}</p>
-          </a>
+          </div>
         </div>
-      </div>
-    </SwipeToDelete>
+      </SwipeableListItem>
+    </SwipeableList>
   );
 };
 
