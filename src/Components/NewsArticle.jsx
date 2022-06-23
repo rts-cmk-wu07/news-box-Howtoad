@@ -10,21 +10,8 @@ import {
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
 import React from "react";
-import { ActionContent, ItemContent } from "../styledComponents";
 
-const NewsArticle = ({
-  title,
-  text,
-  img,
-  key,
-  url,
-  threshold,
-  setThreshold,
-  setSwipeProgress,
-  setSwipeAction,
-  setTriggeredItemAction,
-  id,
-}) => {
+const NewsArticle = ({ title, text, img, article }) => {
   const styles = {
     newsarticle: css`
       display: flex;
@@ -65,56 +52,75 @@ const NewsArticle = ({
         text-overflow: ellipsis;
         display: -webkit-box;
       }
+      & .actionlol {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        padding: 8px;
+        font-size: 12px;
+        font-weight: 500;
+        box-sizing: border-box;
+        color: #eee;
+        user-select: none;
+      }
+      & .itemlol {
+        height: 64px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        background-color: #555878;
+        border-style: solid;
+        border-color: #393a52;
+        border-width: 12px;
+        border-top-width: 6px;
+        border-bottom-width: 6px;
+        color: #eee;
+        user-select: none;
+      }
     `,
   };
-  React.useEffect(() => {
-    setThreshold(0.3);
-  }, [setThreshold]);
-
-  const handleSwipeStart = () => {
-    setSwipeAction("Swipe started");
-    setTriggeredItemAction("None");
+  const savingToLocalStorage = (article) => {
+    let savedArticles = JSON.parse(
+      localStorage.getItem("savedArticles") || "[]"
+    );
+    if (savedArticles.map((article) => article.uri).includes(article.uri)) {
+      return;
+    }
+    savedArticles.push(article);
+    localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
   };
-
-  const handleSwipeEnd = () => {
-    setSwipeAction("Swipe ended");
-    setSwipeProgress();
-  };
-
-  const handleAccept = (id) => () => {
-    console.log("[Handle ACCEPT]", id);
-  };
-
-  const handleOnClick = (id) => () => {
-    console.log("[handle on click]", id);
-  };
-
-  const trailingActions = () => {
+  const trailingActions = (article) => (
     <TrailingActions>
-      <SwipeAction onClick={handleAccept(id)}>
-        <ActionContent style={{ backgroundColor: "green" }}>
-          Accept
-        </ActionContent>
+      <SwipeAction
+        onClick={() => {
+          //archive what is swiped to localstorage
+
+          savingToLocalStorage(article);
+        }}
+      >
+        Action name
       </SwipeAction>
-    </TrailingActions>;
-  };
+    </TrailingActions>
+  );
 
   return (
-    <SwipeableList style={{ backgroundColor: "#ffffff" }}>
-      <SwipeableListItem trailingActions={trailingActions()} key={key}>
-        <ItemContent>
-          <div css={styles.newsarticle} className="newsarticle">
-            <div className="profilepic">
-              <img src={img}></img>
-            </div>
-            <div className="articleinfo">
-              <h2>{title}</h2>
-              <p>{text}</p>
-            </div>
+    <SwipeableListItem
+      trailingActions={trailingActions(article)}
+      threshold={0.5}
+    >
+      <div className="itemlol">
+        <div css={styles.newsarticle} className="newsarticle">
+          <div className="profilepic">
+            <img src={img}></img>
           </div>
-        </ItemContent>
-      </SwipeableListItem>
-    </SwipeableList>
+          <div className="articleinfo">
+            <h2>{title}</h2>
+            <p>{text}</p>
+          </div>
+        </div>
+      </div>
+    </SwipeableListItem>
   );
 };
 

@@ -2,11 +2,18 @@
 import SearchBar from "./SearchBar";
 import CategoryBar from "./CategoryBar";
 const Archive = () => {
+  let checkForCategory = new Set(
+    JSON.parse(localStorage.savedArticles || "[]").map(
+      (article) => article.category[0]
+    )
+  );
+  console.log(checkForCategory);
   return (
     <>
       <SearchBar />
-      <CategoryBar category="sports" />
-      <CategoryBar category="Travel" />
+      {Array.from(checkForCategory).map((item) => {
+        return <CategoryBar category={item} key={item} />;
+      })}
     </>
   );
 };
