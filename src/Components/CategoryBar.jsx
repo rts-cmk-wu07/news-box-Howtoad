@@ -38,6 +38,7 @@ const CategoryBar = ({ category }) => {
                 img={
                   (item.multimedia && item.multimedia[0].url) || placeholderimg
                 }
+                id={item.id}
               />
             );
           })}

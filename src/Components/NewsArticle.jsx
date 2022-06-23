@@ -1,17 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-
 import "react-swipe-to-delete-component/dist/swipe-to-delete.css";
 import {
   SwipeableList,
   SwipeableListItem,
-  LeadingActions,
   SwipeAction,
   TrailingActions,
+  Type as ListType,
 } from "react-swipeable-list";
 import "react-swipeable-list/dist/styles.css";
+import React from "react";
+import { ActionContent, ItemContent } from "../styledComponents";
 
-const NewsArticle = ({ title, text, img, key, url }) => {
+const NewsArticle = ({
+  title,
+  text,
+  img,
+  key,
+  url,
+  threshold,
+  setThreshold,
+  setSwipeProgress,
+  setSwipeAction,
+  setTriggeredItemAction,
+  id,
+}) => {
   const styles = {
     newsarticle: css`
       display: flex;
@@ -54,45 +67,52 @@ const NewsArticle = ({ title, text, img, key, url }) => {
       }
     `,
   };
-  const leadingActions = () => {
-    <LeadingActions>
-      <SwipeAction
-        onClick={() => {
-          console.log("leading action");
-        }}
-      >
-        leadtest
-      </SwipeAction>
-    </LeadingActions>;
+  React.useEffect(() => {
+    setThreshold(0.3);
+  }, [setThreshold]);
+
+  const handleSwipeStart = () => {
+    setSwipeAction("Swipe started");
+    setTriggeredItemAction("None");
   };
+
+  const handleSwipeEnd = () => {
+    setSwipeAction("Swipe ended");
+    setSwipeProgress();
+  };
+
+  const handleAccept = (id) => () => {
+    console.log("[Handle ACCEPT]", id);
+  };
+
+  const handleOnClick = (id) => () => {
+    console.log("[handle on click]", id);
+  };
+
   const trailingActions = () => {
     <TrailingActions>
-      <SwipeAction
-        onClick={() => {
-          console.log("trailing action");
-        }}
-      >
-        trailtest
+      <SwipeAction onClick={handleAccept(id)}>
+        <ActionContent style={{ backgroundColor: "green" }}>
+          Accept
+        </ActionContent>
       </SwipeAction>
     </TrailingActions>;
   };
 
   return (
-    <SwipeableList>
-      <SwipeableListItem
-        leadingActions={leadingActions()}
-        trailingActions={trailingActions()}
-        children={<div className="newsarticle"> </div>}
-      >
-        <div css={styles.newsarticle} className="newsarticle">
-          <div className="profilepic">
-            <img src={img}></img>
+    <SwipeableList style={{ backgroundColor: "#ffffff" }}>
+      <SwipeableListItem trailingActions={trailingActions()} key={key}>
+        <ItemContent>
+          <div css={styles.newsarticle} className="newsarticle">
+            <div className="profilepic">
+              <img src={img}></img>
+            </div>
+            <div className="articleinfo">
+              <h2>{title}</h2>
+              <p>{text}</p>
+            </div>
           </div>
-          <div className="articleinfo">
-            <h2>{title}</h2>
-            <p>{text}</p>
-          </div>
-        </div>
+        </ItemContent>
       </SwipeableListItem>
     </SwipeableList>
   );
