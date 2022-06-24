@@ -1,18 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import "react-swipe-to-delete-component/dist/swipe-to-delete.css";
-import {
-  SwipeableList,
-  SwipeableListItem,
-  SwipeAction,
-  TrailingActions,
-  Type as ListType,
-} from "react-swipeable-list";
-import "react-swipeable-list/dist/styles.css";
 import React from "react";
-import { BiArchiveIn } from "react-icons/bi";
+import SwipeToDelete from "react-swipe-to-delete-component";
+import "react-swipe-to-delete-component/dist/swipe-to-delete.css";
 
-const NewsArticle = ({ title, text, img, article }) => {
+const ArchivedArticle = ({ title, text, img, article, uri }) => {
   const styles = {
     newsarticle: css`
       display: flex;
@@ -80,48 +73,21 @@ const NewsArticle = ({ title, text, img, article }) => {
         user-select: none;
       }
     `,
-    archiveicon: css`
-      width: 20px;
-      height: 20px;
-      justify-self: center;
-      align-self: center;
-    `,
-    archivestyle: css`
-      background-color: #87bcbf;
-      display: Flex;
-      width: 100%;
-      align-items: stretch;
-    `,
   };
-  const savingToLocalStorage = (article) => {
-    let savedArticles = JSON.parse(
-      localStorage.getItem("savedArticles") || "[]"
-    );
-    if (savedArticles.map((article) => article.uri).includes(article.uri)) {
-      return;
-    }
-    savedArticles.push(article);
-    localStorage.setItem("savedArticles", JSON.stringify(savedArticles));
+  let savedArticles = JSON.parse(localStorage.getItem("savedArticles"));
+  let newsavedArticles = [];
+  const onDelete = (savedarticle) => {
+    savedArticles = JSON.parse(localStorage.getItem("savedArticles"));
+    savedArticles.map((article) => {
+      if (article.uri !== uri) {
+        newsavedArticles.push(article);
+      }
+    });
+    localStorage.setItem("savedArticles", JSON.stringify(newsavedArticles));
+    savedArticles = newsavedArticles;
   };
-  const trailingActions = (article) => (
-    <TrailingActions>
-      <SwipeAction
-        onClick={() => {
-          savingToLocalStorage(article);
-        }}
-      >
-        <div className="stylingforarchive" css={styles.archivestyle}>
-          <BiArchiveIn css={styles.archiveicon}></BiArchiveIn>
-        </div>
-      </SwipeAction>
-    </TrailingActions>
-  );
-
   return (
-    <SwipeableListItem
-      trailingActions={trailingActions(article)}
-      threshold={0.5}
-    >
+    <SwipeToDelete key={uri} onDelete={onDelete}>
       <div className="itemlol">
         <div css={styles.newsarticle} className="newsarticle">
           <div className="profilepic">
@@ -133,8 +99,8 @@ const NewsArticle = ({ title, text, img, article }) => {
           </div>
         </div>
       </div>
-    </SwipeableListItem>
+    </SwipeToDelete>
   );
 };
 
-export default NewsArticle;
+export default ArchivedArticle;

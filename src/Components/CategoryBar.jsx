@@ -19,7 +19,7 @@ const CategoryBar = ({ category }) => {
   let placeholderimg = "images/newswoman.png";
 
   const [arrow, setArrow] = useState("0deg");
-  console.log(data);
+
   return (
     <>
       <Collapsible
@@ -37,19 +37,27 @@ const CategoryBar = ({ category }) => {
           data.results.map((item) => {
             item.category = category;
             return (
-              <SwipeableList style={{ backgroundColor: "#ffffff" }}>
-                <NewsArticle
-                  key={item.id}
-                  title={item.title}
-                  text={item.abstract}
-                  url={item.url}
-                  img={
-                    (item.multimedia && item.multimedia[0].url) ||
-                    placeholderimg
-                  }
-                  article={item}
-                />
-              </SwipeableList>
+              <>
+                {item.title &&
+                  item.abstract &&
+                  item.uri &&
+                  item.url &&
+                  item.multimedia && (
+                    <SwipeableList style={{ backgroundColor: "#ffffff" }}>
+                      <NewsArticle
+                        key={item.id}
+                        title={item.title}
+                        text={item.abstract}
+                        url={item.url}
+                        img={
+                          (item.multimedia && item.multimedia[0].url) ||
+                          placeholderimg
+                        }
+                        article={item}
+                      />
+                    </SwipeableList>
+                  )}
+              </>
             );
           })}
       </Collapsible>
