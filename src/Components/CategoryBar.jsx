@@ -19,7 +19,7 @@ const CategoryBar = ({ category }) => {
   let placeholderimg = "images/newswoman.png";
 
   const [arrow, setArrow] = useState("0deg");
-
+  console.log(data);
   return (
     <>
       <Collapsible

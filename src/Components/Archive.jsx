@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import SearchBar from "./SearchBar";
-import CategoryBar from "./CategoryBar";
+import ArchivedBar from "./ArchivedBar";
 const Archive = () => {
   let checkForCategory = new Set(
     JSON.parse(localStorage.savedArticles || "[]").map(
       (article) => article.category[0]
     )
   );
-  console.log(checkForCategory);
+
   return (
     <>
       <SearchBar />
       {Array.from(checkForCategory).map((item) => {
-        return <CategoryBar category={item} key={item} />;
+        return <ArchivedBar category={item} key={item} />;
       })}
     </>
   );

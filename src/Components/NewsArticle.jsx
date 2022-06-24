@@ -94,8 +94,6 @@ const NewsArticle = ({ title, text, img, article }) => {
     <TrailingActions>
       <SwipeAction
         onClick={() => {
-          //archive what is swiped to localstorage
-
           savingToLocalStorage(article);
         }}
       >
